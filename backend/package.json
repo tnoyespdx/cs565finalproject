@@ -10,7 +10,7 @@
     "fmt": "prettier --write .",
     "lint": "eslint . --ext .ts",
     "check": "pnpm fmt && pnpm lint"
-},
+  },
   "devDependencies": {
     "@swc/core": "^1.3.60",
     "@types/node": "^20.2.5",
@@ -24,6 +24,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@fastify/cors": "^8.3.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.17.0"
   },
