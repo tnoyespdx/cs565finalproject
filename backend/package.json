@@ -9,7 +9,11 @@
     "start": "node build/index.js",
     "fmt": "prettier --write .",
     "lint": "eslint . --ext .ts",
-    "check": "pnpm fmt && pnpm lint"
+    "check": "pnpm fmt && pnpm lint",
+    "schema:update": "pnpm mikro-orm-esm schema:update --run --fk-checks",
+    "schema:drop": "pnpm mikro-orm-esm schema:drop --run",
+    "schema:fresh": "pnpm mikro-orm-esm schema:fresh",
+    "schema:freshSeed": "pnpm mikro-orm-esm schema:fresh --seed"
   },
   "devDependencies": {
     "@swc/core": "^1.3.60",
@@ -25,8 +29,14 @@
   },
   "dependencies": {
     "@fastify/cors": "^8.3.0",
+    "@mikro-orm/cli": "5.7.10",
+    "@mikro-orm/core": "5.7.10",
+    "@mikro-orm/migrations": "5.7.10",
+    "@mikro-orm/postgresql": "5.7.10",
+    "@mikro-orm/reflection": "5.7.10",
     "dotenv": "^16.0.3",
-    "fastify": "^4.17.0"
+    "fastify": "^4.17.0",
+    "fastify-plugin": "^4.5.0"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,7 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import { FastifyMikroOrmPlugin } from "./plugins/mikro.js";
+import config from "./db/mikro-orm.config.js";
 
 const envToLogger = {
   development: {
@@ -36,6 +38,6 @@ await app.register(cors, {
     cb(null, true);
   }
 });
-
+await app.register(FastifyMikroOrmPlugin, config);
 
 export default app;
