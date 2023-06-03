@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import { FastifySearchHttpMethodPlugin } from "./plugins/http_search.js";
 import { FastifyMikroOrmPlugin } from "./plugins/mikro.js";
 import config from "./db/mikro-orm.config.js";
 import MyAppRoutes from "./routes/routes.js";
@@ -40,6 +41,8 @@ await app.register(cors, {
   }
 });
 await app.register(FastifyMikroOrmPlugin, config);
+await app.register(FastifySearchHttpMethodPlugin);
 await app.register(MyAppRoutes, {});
+
 
 export default app;

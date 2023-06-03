@@ -20,8 +20,18 @@ export function UserRoutesInit(app: FastifyInstance) {
     }
   });
 
-// READ
-
+  // READ
+  app.search("/users", async (req, reply) => {
+    const { id } = req.body;
+    
+    try {
+      const theUser = await req.em.findOneOrFail(User, id, {strict: true});
+      reply.send(theUser);
+    } catch (err) {
+      reply.status(500).send(err);
+    }
+  });
+  
 // UPDATE
 
 // DELETE
