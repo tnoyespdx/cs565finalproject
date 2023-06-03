@@ -38,11 +38,29 @@ export function UserRoutesInit(app: FastifyInstance) {
     const userToChange = await req.em.findOneOrFail(User, id, {strict: true});
     userToChange.username = username;
     await req.em.flush();
-    console.log(userToChange);
     reply.send(userToChange);
 });
 
-
-
 // DELETE
+  app.delete<{ Body: { my_id: number; id_to_delete: number} }>("/users", async (req, reply) => {
+    const { my_id, id_to_delete} = req.body;
+    
+    try {
+      const me = await req.em.findOneOrFail(User, my_id, {strict: true});
+      
+      // Make sure the requester is an Admin
+      if (me.role === UserRole.USER) {
+        console.log("Only an ADMIN can delete a user.");
+        return reply.status(401).send()
+      }
+      
+      const theUserToDelete = await req.em.findOneOrFail(User, id_to_delete, {strict: true});
+    
+      await req.em.remove(theUserToDelete).flush();
+      return reply.send(theUserToDelete);
+    } catch (err) {
+      return reply.status(500).send(err);
+    }
+  });
+  
 }
