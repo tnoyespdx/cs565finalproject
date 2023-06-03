@@ -14,7 +14,7 @@ export class User extends MyBaseEntity {
   email!: string;
   
   @Property()
-  name!: string
+  username!: string
   
   @Enum(() => UserRole)
   role!: UserRole; // string enum

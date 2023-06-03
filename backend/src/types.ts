@@ -1,4 +1,9 @@
 export type UserInfo = {
-  name: string,
+  username: string,
   email: string,
+}
+
+export type UsernameId = {
+  username: string,
+  id: number,
 }
