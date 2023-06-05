@@ -24,7 +24,17 @@ export function CollectionRoutesInit(app: FastifyInstance) {
   });
   
   // READ: Get all of the cards in a user's collection
-  
+  app.search<{ Body: { user_id: number } }>("/collection", async (req, reply) => {
+    const { user_id } = req.body;
+    
+    try {
+      const userEntity = await req.em.getReference(User, user_id);
+      const collected = await req.em.find(Collected, { owner: userEntity });
+      return reply.send(collected);
+    } catch (err) {
+      return reply.status(500).send({ message: err.message });
+    }
+  });
   
   // UPDATE
   
