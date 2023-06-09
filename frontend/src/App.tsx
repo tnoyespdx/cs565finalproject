@@ -1,5 +1,6 @@
 import '@css/App.css'
 import '@css/MyStyles.css'
+import { Button, CollectionList } from "@/Components/Button.tsx";
 import { HomePage } from "@/Components/HomePage.tsx";
 import LoginButton from "@/Components/LoginButton.tsx";
 import LogoutButton from "@/Components/LogoutButton.tsx";
@@ -13,6 +14,8 @@ export function App() {
       <LoginButton />
       <LogoutButton />
       <Profile />
+      <Button />
+      <CollectionList />
     </div>
   );
 }

@@ -36,6 +36,17 @@ export function CollectionRoutesInit(app: FastifyInstance) {
     }
   });
   
+  // GET ALL COLLECTIONS
+  app.get("/collections",
+    async (req, reply) => {
+      try {
+        const theCollection = await req.em.find(Collected, {});
+        reply.send(theCollection);
+      } catch (err) {
+        reply.status(500).send(err);
+      }
+    });
+  
   // UPDATE
   
 
