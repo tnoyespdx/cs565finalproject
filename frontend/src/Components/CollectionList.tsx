@@ -3,39 +3,42 @@ import { CardService } from "@/Services/CardService.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useEffect, useState } from "react";
 
-export const Button = () => {
-  const [clicks, setClicks] = useState(0);
-  return (
-    <button
-      onClick={() => {
-        console.log("Clicked");
-        setClicks(clicks + 1);
-      }}
-    >
-      Clicks: {clicks}
-    </button>
-  );
-};
-
 export const CollectionList = () => {
   const [collection, setCollection] = useState([]);
   const [usersCards, setUsersCards] = useState([]);
   const [cardNames, setCardNames] = useState([]);
+  const [userId, setUserId] = useState(0);
   
+  // useEffect( () => {
+  //   const getUserId = async () => {
+  //     try {
+  //       const id = await httpClient.search("/users", {"email": user.email})
+  //       console.log("id.data: ", id.data)
+  //       return id.data;
+  //
+  //     } catch (err) {
+  //       console.log("Error getting user id: ", err);
+  //     }
+  //   }
+  //     getUserId().then(setUserId);
+  // }, []);
+  //
+  // console.log("user id: ", userId);
   
   useEffect( () => {
     const getCollection = async () => {
       try {
         // Check which cards this user has in their collection
         const collectionRes = await httpClient.search("/collection", { "user_id": 1 });
-        //setCollection(collectionRes.data);
+        //const collectionRes = await httpClient.search("/collection", { "user_id": { userId } });
+
         return collectionRes.data;
       } catch (err) {
         console.log("Error getting collection: ", err);
       }
     }
       getCollection().then(setCollection);
-    }, []);
+    }, [userId]);
   
   
   useEffect( () => {
@@ -65,7 +68,6 @@ export const CollectionList = () => {
   
   return (
     <div>
-      <h2>Collection:</h2>
       {
         // collection ?
         //   <ul>

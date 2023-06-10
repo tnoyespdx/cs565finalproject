@@ -1,22 +1,35 @@
 import '@css/App.css'
 import '@css/MyStyles.css'
-import { Button, CollectionList } from "@/Components/Button.tsx";
+import { CollectionList } from "@/Components/CollectionList.tsx";
+import { CollectionPage } from "@/Components/CollectionPage.tsx";
 import { HomePage } from "@/Components/HomePage.tsx";
 import LoginButton from "@/Components/LoginButton.tsx";
 import LogoutButton from "@/Components/LogoutButton.tsx";
 import Profile from "@/Components/Profile.tsx";
+import { Link, Route, Routes, BrowserRouter } from 'react-router-dom';
 
 export function App() {
   
   return (
-    <div className="App">
-      <HomePage />
-      <LoginButton />
-      <LogoutButton />
-      <Profile />
-      <Button />
-      <CollectionList />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <nav>
+          <div className={"menu"}>
+            <Link to={"/"}>Home</Link>
+            <Link to={"/collection"}>My Collection</Link>
+          </div>
+        </nav>
+        <LoginButton />
+        <LogoutButton />
+      </div>
+      
+      <Routes>
+        <Route path={"/"} element={<HomePage />} />
+        <Route path={"collection"} element={<CollectionPage />} />
+      </Routes>
+    </BrowserRouter>
+    
+
   );
 }
 
