@@ -36,6 +36,7 @@ export function CollectionRoutesInit(app: FastifyInstance) {
     }
   });
   
+  
   // GET ALL COLLECTIONS
   app.get("/collections",
     async (req, reply) => {

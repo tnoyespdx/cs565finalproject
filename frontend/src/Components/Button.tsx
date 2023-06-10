@@ -1,4 +1,5 @@
 // Cannot persist information otherwise, it will get rendered over!
+import { CardService } from "@/Services/CardService.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useEffect, useState } from "react";
 
@@ -19,6 +20,7 @@ export const Button = () => {
 
 export const CollectionList = () => {
   const [collection, setCollection] = useState([]);
+  const [cards, setCards] = useState([]);
   
   useEffect( () => {
     const getCollection = async () => {
@@ -28,6 +30,14 @@ export const CollectionList = () => {
       } catch (err) {
         console.log("Error getting collection: ", err);
       }
+      try {
+        const cardsRes = await CardService.getCards();
+        console.log(cardsRes.data);
+        setCards(cardsRes.data);
+      } catch (err) {
+        console.log("Error getting cards: ", err);
+      }
+   
       
     };
     void getCollection();
@@ -38,11 +48,11 @@ export const CollectionList = () => {
     <div>
       <h2>Collection:</h2>
       {
-        collection ?
+        cards ?
           <ul>
             {
-              collection.map((collected: {card:number}, index) =>
-              <li key={index}>Card: {collected.card}</li>)
+              cards.map((card: {name:string, set:string}, index) =>
+              <li key={index}>Card: {card.name} - Set: {card.set}</li>)
             }
           </ul>
           :
