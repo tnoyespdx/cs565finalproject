@@ -17,5 +17,17 @@ export class CardSeeder extends Seeder {
       name: "Squirtle",
       set: "Base"
     });
+    em.create(Card, {
+      name: "Ivysaur",
+      set: "Base"
+    });
+    em.create(Card, {
+      name: "Charmeleon",
+      set: "Base"
+    });
+    em.create(Card, {
+      name: "Wartortle",
+      set: "Base"
+    });
   }
 }

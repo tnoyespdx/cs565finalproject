@@ -14,7 +14,7 @@ export function CardRoutesInit(app: FastifyInstance) {
     }
   });
 
-// GET ALL CARDS FROM THE DATABASE
+  // GET ALL CARDS FROM THE DATABASE
   app.get("/cards",
     async (req, reply) => {
       try {
@@ -24,4 +24,7 @@ export function CardRoutesInit(app: FastifyInstance) {
         reply.status(500).send(err);
       }
     });
+  
+  
+  
 }
