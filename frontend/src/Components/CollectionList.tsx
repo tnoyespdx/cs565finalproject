@@ -2,36 +2,35 @@
 import { CardService } from "@/Services/CardService.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useEffect, useState } from "react";
+import { useAuth0 } from '@auth0/auth0-react';
 
 export const CollectionList = () => {
   const [collection, setCollection] = useState([]);
   const [usersCards, setUsersCards] = useState([]);
   const [cardNames, setCardNames] = useState([]);
   const [userId, setUserId] = useState(0);
+  const { user } = useAuth0();
   
-  // useEffect( () => {
-  //   const getUserId = async () => {
-  //     try {
-  //       const id = await httpClient.search("/users", {"email": user.email})
-  //       console.log("id.data: ", id.data)
-  //       return id.data;
-  //
-  //     } catch (err) {
-  //       console.log("Error getting user id: ", err);
-  //     }
-  //   }
-  //     getUserId().then(setUserId);
-  // }, []);
-  //
-  // console.log("user id: ", userId);
+  useEffect( () => {
+    const getUserId = async () => {
+      try {
+        
+        const id = await httpClient.search("/users", {"email": user.email})
+        return id.data.id;
+      } catch (err) {
+        console.log("Error getting user id: ", err);
+      }
+    }
+      getUserId().then(setUserId);
+  }, []);
+
+  
   
   useEffect( () => {
     const getCollection = async () => {
       try {
         // Check which cards this user has in their collection
-        const collectionRes = await httpClient.search("/collection", { "user_id": 1 });
-        //const collectionRes = await httpClient.search("/collection", { "user_id": { userId } });
-
+        const collectionRes = await httpClient.search("/collection", { "user_id": userId });
         return collectionRes.data;
       } catch (err) {
         console.log("Error getting collection: ", err);
@@ -69,18 +68,6 @@ export const CollectionList = () => {
   return (
     <div>
       {
-        // collection ?
-        //   <ul>
-        //     {
-        //
-        //       // collection.map((collected: {card:number}, index) =>
-        //       //   <li key={index}>Card ID: {collected.card}</li>)
-        //       collection.map((collected: {card:number}) => (<div key={collected.card}>{collected.card}</div>))
-        //     }
-        //   </ul>
-        //   :
-        //   null
-        
         cardNames ?
           <ul>
             {
@@ -94,7 +81,6 @@ export const CollectionList = () => {
           :
           null
       }
-      
     </div>
   );
 };
