@@ -4,13 +4,6 @@ import React from "react";
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   
-  // return (
-  //   <div><h1>Profile</h1></div>
-  // )
-  
-  console.log("Authenticated?");
-  console.log(isAuthenticated);
-  
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -18,9 +11,9 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <div>
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+        {/*<img src={user.picture} alt={user.name} />*/}
+        {/*<h2>{user.name}</h2>*/}
+        <p>Logged in as: {user.email}</p>
       </div>
     )
   );

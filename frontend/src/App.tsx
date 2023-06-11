@@ -6,6 +6,7 @@ import { HomePage } from "@/Components/HomePage.tsx";
 import LoginButton from "@/Components/LoginButton.tsx";
 import LogoutButton from "@/Components/LogoutButton.tsx";
 import { AuthenticationGuard } from "@/Components/AuthenticationGuard.tsx";
+import { Menu } from "@/Components/Menu.tsx";
 import Profile from "@/Components/Profile.tsx";
 import { Link, Route, Routes, BrowserRouter } from 'react-router-dom';
 
@@ -14,15 +15,7 @@ export function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <nav>
-          <div className={"menu"}>
-            <Link to={"/"}>Home</Link>
-            <Link to={"/collection"}>My Collection</Link>
-          </div>
-        </nav>
-        <LoginButton />
-        <LogoutButton />
-        <Profile />
+       <Menu />
       </div>
       
       <Routes>

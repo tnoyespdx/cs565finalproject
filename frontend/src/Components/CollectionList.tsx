@@ -1,4 +1,3 @@
-// Cannot persist information otherwise, it will get rendered over!
 import { CardService } from "@/Services/CardService.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useEffect, useState } from "react";
@@ -11,20 +10,22 @@ export const CollectionList = () => {
   const [userId, setUserId] = useState(0);
   const { user } = useAuth0();
   
+
+  
   useEffect( () => {
     const getUserId = async () => {
       try {
-        
-        const id = await httpClient.search("/users", {"email": user.email})
-        return id.data.id;
+        // Query the database using the authenticated user's email, and get back their user id
+        const theUser = await httpClient.search("/users", {"email": user.email})
+        return theUser.data.id;
       } catch (err) {
         console.log("Error getting user id: ", err);
       }
     }
       getUserId().then(setUserId);
   }, []);
-
   
+  console.log("User ID: ", userId);
   
   useEffect( () => {
     const getCollection = async () => {

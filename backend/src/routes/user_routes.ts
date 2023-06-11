@@ -21,12 +21,12 @@ export function UserRoutesInit(app: FastifyInstance) {
   });
 
   // READ
-  app.search("/users", async (req, reply) => {
-    const { id } = req.body;
+  app.search<{ Body: { email: string } }>("/users", async (req, reply) => {
+    const { email } = req.body;
     
     try {
-      const theUser = await req.em.findOneOrFail(User, id, {strict: true});
-      reply.send(theUser);
+      const theUser = await req.em.findOne(User, {email});
+      return reply.send(theUser);
     } catch (err) {
       reply.status(500).send(err);
     }
