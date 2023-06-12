@@ -72,11 +72,11 @@ export const CollectionList = () => {
             {
               // cardNames.map((card: {name:string, set:string}, index) =>
               //   <li key={index}>{card.name} - {card.set} set</li>)
-              cardNames.map((card: {name:string, set:string}, index) =>
+              cardNames.map((card: {name:string, set:string, imgUri:string, rarity:string, setNum:number, setTotal:number}, index) =>
                 <li className={"list-unstyled"} key={index}>
               
                   <Card className={"m-1"} style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px280" />
+                <Card.Img variant="top" src={"../src/assets/images/" + card.imgUri}/>
                 <Card.Body>
                   <Card.Title>{card.name}</Card.Title>
                   <Card.Text>

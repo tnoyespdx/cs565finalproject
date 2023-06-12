@@ -10,4 +10,15 @@ export class Card extends MyBaseEntity {
   @Property()
   set!: string;
   
+  @Property()
+  imgUri!: string;
+  
+  @Property()
+  rarity!: string;
+  
+  @Property()
+  setNum!: number;
+  
+  @Property()
+  setTotal!: number;
 }
