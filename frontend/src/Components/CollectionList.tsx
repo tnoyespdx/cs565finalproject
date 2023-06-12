@@ -2,15 +2,14 @@ import { CardService } from "@/Services/CardService.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useEffect, useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
+import { Card, CardGroup} from 'react-bootstrap';
 
 export const CollectionList = () => {
   const [collection, setCollection] = useState([]);
   const [usersCards, setUsersCards] = useState([]);
   const [cardNames, setCardNames] = useState([]);
   const [userId, setUserId] = useState(0);
-  const { user } = useAuth0();
-  
-
+  const { user, isAuthenticated } = useAuth0();
   
   useEffect( () => {
     const getUserId = async () => {
@@ -23,9 +22,7 @@ export const CollectionList = () => {
       }
     }
       getUserId().then(setUserId);
-  }, []);
-  
-  console.log("User ID: ", userId);
+  }, [isAuthenticated]);
   
   useEffect( () => {
     const getCollection = async () => {
@@ -71,13 +68,25 @@ export const CollectionList = () => {
       {
         cardNames ?
           <ul>
+            <CardGroup className={"mt-5"}>
             {
-
-              // collection.map((collected: {card:number}, index) =>
-              //   <li key={index}>Card ID: {collected.card}</li>)
+              // cardNames.map((card: {name:string, set:string}, index) =>
+              //   <li key={index}>{card.name} - {card.set} set</li>)
               cardNames.map((card: {name:string, set:string}, index) =>
-                <li key={index}>{card.name} - {card.set} set</li>)
+                <li className={"list-unstyled"} key={index}>
+              
+                  <Card className={"m-1"} style={{ width: '18rem' }}>
+                <Card.Img variant="top" src="holder.js/100px280" />
+                <Card.Body>
+                  <Card.Title>{card.name}</Card.Title>
+                  <Card.Text>
+                    {card.set}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+                </li>)
             }
+          </CardGroup>
           </ul>
           :
           null

@@ -11,9 +11,7 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <div>
-        {/*<img src={user.picture} alt={user.name} />*/}
-        {/*<h2>{user.name}</h2>*/}
-        <p>Logged in as: {user.email}</p>
+        <span className={"px-5 align-middle"}>{user.email}</span>
       </div>
     )
   );

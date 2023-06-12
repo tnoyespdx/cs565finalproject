@@ -1,5 +1,6 @@
 import '@css/App.css'
 import '@css/MyStyles.css'
+import { AddCard } from "@/Components/AddCard.tsx";
 import { CollectionList } from "@/Components/CollectionList.tsx";
 import { CollectionPage } from "@/Components/CollectionPage.tsx";
 import { HomePage } from "@/Components/HomePage.tsx";
@@ -21,6 +22,7 @@ export function App() {
       <Routes>
         <Route path={"/"} element={<HomePage />} />
         <Route path={"collection"} element={<AuthenticationGuard component={CollectionPage} />} />
+        <Route path={"collection/add"} element={<AuthenticationGuard component={AddCard} />} />
       </Routes>
     </BrowserRouter>
     

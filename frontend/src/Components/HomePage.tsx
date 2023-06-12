@@ -20,8 +20,6 @@ export const HomePage = () => {
     checkIfUserExists().then(setExists);
   }, [isAuthenticated]);
   
-  console.log("exists: ", exists);
-  
      useEffect( () =>{
       const createUserAccount = async () => {
         if (!exists) {
@@ -41,7 +39,7 @@ export const HomePage = () => {
   
      return (
     <div>
-      <h1>Pokemon Card Collecting App</h1>
+      <h1 className={"mt-5"}>Pokemon Card Collector!</h1>
     </div>
   )
 

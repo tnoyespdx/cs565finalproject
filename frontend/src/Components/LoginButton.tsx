@@ -6,9 +6,9 @@ const LoginButton = () => {
   
   return (
   isAuthenticated ?
-    <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</button>
+    <button className={"px-3"} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</button>
     :
-    <button onClick={() => loginWithRedirect()}>Log In</button>
+    <button className={"px-3"} onClick={() => loginWithRedirect()}>Log In</button>
   )
 
 };
