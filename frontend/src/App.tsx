@@ -9,6 +9,7 @@ import LogoutButton from "@/Components/LogoutButton.tsx";
 import { AuthenticationGuard } from "@/Components/AuthenticationGuard.tsx";
 import { Menu } from "@/Components/Menu.tsx";
 import Profile from "@/Components/Profile.tsx";
+import { SignupPage } from "@/Components/SignupPage.tsx";
 import { Link, Route, Routes, BrowserRouter } from 'react-router-dom';
 
 export function App() {
@@ -23,6 +24,7 @@ export function App() {
         <Route path={"/"} element={<HomePage />} />
         <Route path={"collection"} element={<AuthenticationGuard component={CollectionPage} />} />
         <Route path={"collection/add"} element={<AuthenticationGuard component={AddCard} />} />
+        <Route path={"signup"} element={<SignupPage />} />
       </Routes>
     </BrowserRouter>
     

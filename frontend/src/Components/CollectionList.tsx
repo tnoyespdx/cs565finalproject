@@ -11,6 +11,7 @@ export const CollectionList = () => {
   const [userId, setUserId] = useState(0);
   const { user, isAuthenticated } = useAuth0();
   
+  
   useEffect( () => {
     const getUserId = async () => {
       try {

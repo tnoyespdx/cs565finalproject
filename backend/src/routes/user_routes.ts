@@ -25,10 +25,10 @@ export function UserRoutesInit(app: FastifyInstance) {
     const { email } = req.body;
     
     try {
-      const theUser = await req.em.findOne(User, {email});
+      const theUser = await req.em.findOneOrFail(User, {email}, {strict: true});
       return reply.send(theUser);
     } catch (err) {
-      reply.status(500).send(err);
+      return reply.status(500).send({ message: err.message });
     }
   });
   
