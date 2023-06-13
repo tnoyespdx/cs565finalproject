@@ -76,7 +76,7 @@ export const CollectionList = () => {
                 <li className={"list-unstyled"} key={index}>
               
                   <Card className={"m-1"} style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={"../src/assets/images/" + card.imgUri}/>
+                <Card.Img variant="top" src={"../src/assets/images/" + card.imgUri} />
                 <Card.Body>
                   <Card.Title>{card.name}</Card.Title>
                   <Card.Text>

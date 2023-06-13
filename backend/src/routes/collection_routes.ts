@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
 import { Card } from "../db/entities/Card.js";
 import { Collected } from "../db/entities/Collected.js";
-import { User, UserRole } from "../db/entities/User.js";
-import { UserIdCardId, UserInfo, UsernameId } from "../types.js";
+import { User } from "../db/entities/User.js";
+import { UserIdCardId } from "../types.js";
 
 export function CollectionRoutesInit(app: FastifyInstance) {
   

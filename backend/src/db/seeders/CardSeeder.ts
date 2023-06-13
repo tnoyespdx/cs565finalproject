@@ -48,9 +48,33 @@ export class CardSeeder extends Seeder {
     em.create(Card, {
       name: "Wartortle",
       set: "Base",
-      imgUri: "IvysaurBaseSet42.jpg",
+      imgUri: "WartortleBaseSet42.jpg",
       rarity: "Uncommon",
       setNum: 42,
+      setTotal: 102
+    });
+    em.create(Card, {
+      name: "Venusaur",
+      set: "Base",
+      imgUri: "VenusaurBaseSet15.jpg",
+      rarity: "Holo Rare",
+      setNum: 15,
+      setTotal: 102
+    });
+    em.create(Card, {
+      name: "Charizard",
+      set: "Base",
+      imgUri: "CharizardBaseSet4.jpg",
+      rarity: "Uncommon",
+      setNum: 4,
+      setTotal: 102
+    });
+    em.create(Card, {
+      name: "Blastoise",
+      set: "Base",
+      imgUri: "BlastoiseBaseSet2.jpg",
+      rarity: "Uncommon",
+      setNum: 2,
       setTotal: 102
     });
   }
