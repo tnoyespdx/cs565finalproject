@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const CollectionPage = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [exists, setExists] = useState(false);
   
   

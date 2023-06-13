@@ -8,10 +8,11 @@ export const SignupPage = () => {
   const { user, isAuthenticated } = useAuth0();
   const [exists, setExists] = useState(false);
   const [submitted, setSubmitted] = useState(SubmissionStatus.NotSubmitted);
+
   
   function handleSubmit(e) {
     e.preventDefault();
-    
+
     if (!exists) {
       httpClient.post("/users", {"email": user.email, "username": user.email})
         .then( (response) => {
@@ -27,11 +28,12 @@ export const SignupPage = () => {
   }
   
 
-  return exists ?
+  return exists && isAuthenticated ?
     (
     <div>
       <h1 className={"mt-5"}>Pokemon Card Collector!</h1>
-      <h2 className={"text-info-emphasis mt-5"}>You already have an account!</h2>
+      <h2 className={"text-info-emphasis mt-5"}>Let's get started...</h2>
+      <img src={"../src/assets/images/signup_image.jpg"} className={"mt-5"}/>
     </div>
     )
     :
@@ -41,7 +43,7 @@ export const SignupPage = () => {
           <h1>To start your collection you'll need an account!</h1>
           <br />
           <label>Email Address:</label>
-          <input className={"m-5"} type="text" readOnly={true} placeholder={user.email} />
+          <input className={"m-5"} type="text" readOnly={false} placeholder="email@email.com" />
         </label>
         <br />
         <button type="submit" className="m-5 px-5">Create Account</button>

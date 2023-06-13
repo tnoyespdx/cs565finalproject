@@ -1,4 +1,5 @@
 import { AddCardService } from "@/Services/AddCardService.tsx";
+import { CardService } from "@/Services/CardService.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import * as http from "http";
@@ -14,6 +15,7 @@ export const AddCard = () => {
   const { user } = useAuth0();
   const [userId, setUserId] = useState(0);
   const [submitted, setSubmitted] = useState(SubmissionStatus.NotSubmitted);
+  const [cardList, setCardList] = useState([]);
   
   useEffect( () => {
     const getUserId = async () => {
@@ -38,7 +40,6 @@ export const AddCard = () => {
     
     httpClient.post("/collection/add",  {"user_id": userId, "card_id": +formJson.card_id}) //typecast to number
       .then( (response) => {
-        console.log("Got response from adding card", response.status);
         if (response.status === 200) {
           setSubmitted(SubmissionStatus.SubmitSucceeded);
         }
@@ -48,16 +49,29 @@ export const AddCard = () => {
     });
   }
   
+  useEffect( () => {
+    const getAllCards = async () => {
+      try {
+        const theCards = await httpClient.get("/cards")
+        return theCards.data;
+      } catch (err) {
+        console.log("unable to find any cards", err.message);
+      }
+    }
+    getAllCards().then(setCardList);
+  }, []);
   
   return (
     <form onSubmit={handleSubmit} className="mt-5">
     <label>
       <h1>Select a card to add to your collection:</h1>
       <br />
-      <select name="card_id" defaultValue="orange">
-        <option value="4">Ivysaur</option>
-        <option value="5">Charmeleon</option>
-        <option value="6">Wartortle</option>
+      <select name="card_id" defaultValue="Select a card">
+        {
+          cardList.map((card: {name:string, set:string, rarity:string, setNum:number, setTotal:number}, index) =>
+            <option key={index} value={index+1}>{card.name} - {card.set} Set - {card.rarity} {card.setNum}/{card.setTotal}</option>)
+          // The index starts at 0, but my cards card_id in the database start at 1
+        }
       </select>
     </label>
       <br />

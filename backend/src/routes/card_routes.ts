@@ -19,9 +19,9 @@ export function CardRoutesInit(app: FastifyInstance) {
     async (req, reply) => {
       try {
         const theCard = await req.em.find(Card, {});
-        reply.send(theCard);
+        return reply.send(theCard);
       } catch (err) {
-        reply.status(500).send(err);
+        return reply.status(500).send(err);
       }
     });
   

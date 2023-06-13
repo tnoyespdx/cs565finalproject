@@ -71,8 +71,6 @@ export const CollectionList = () => {
           <ul>
             <CardGroup className={"mt-5"}>
             {
-              // cardNames.map((card: {name:string, set:string}, index) =>
-              //   <li key={index}>{card.name} - {card.set} set</li>)
               cardNames.map((card: {name:string, set:string, imgUri:string, rarity:string, setNum:number, setTotal:number}, index) =>
                 <li className={"list-unstyled"} key={index}>
               
@@ -80,8 +78,9 @@ export const CollectionList = () => {
                 <Card.Img variant="top" src={"../src/assets/images/" + card.imgUri} />
                 <Card.Body>
                   <Card.Title>{card.name}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">{card.set} Set</Card.Subtitle>
                   <Card.Text>
-                    {card.set}
+                    {card.rarity} - {card.setNum}/{card.setTotal}
                   </Card.Text>
                 </Card.Body>
               </Card>
