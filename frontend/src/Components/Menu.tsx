@@ -7,17 +7,6 @@ import {LinkContainer} from 'react-router-bootstrap'
 
 export const Menu = () => {
   return (
-    // <div>
-    //   <nav className={"navbar navbar-default"}>
-    //     <div className={"menu"}>
-    //       <Link to={"/"}>Home</Link>
-    //       <Link to={"/collection"}>My Collection</Link>
-    //     </div>
-    //   </nav>
-    //   <LoginButton />
-    //   <Profile />
-    // </div>
-    
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="/">Pokemon Card Collector</Navbar.Brand>
@@ -30,7 +19,7 @@ export const Menu = () => {
             <LinkContainer to={"/collection"}>
               <Nav.Link >My Collection</Nav.Link>
             </LinkContainer>
-            <LinkContainer to={"/collection"}>
+            <LinkContainer to={"/wanted"}>
               <Nav.Link >My Want List</Nav.Link>
             </LinkContainer>
           </Nav>

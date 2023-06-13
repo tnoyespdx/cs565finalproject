@@ -1,16 +1,14 @@
 import '@css/App.css'
 import '@css/MyStyles.css'
-import { AddCard } from "@/Components/AddCard.tsx";
-import { CollectionList } from "@/Components/CollectionList.tsx";
+import { AddCardCollection } from "@/Components/AddCardCollection.tsx";
+import { AddCardWanted } from "@/Components/AddCardWanted.tsx";
 import { CollectionPage } from "@/Components/CollectionPage.tsx";
 import { HomePage } from "@/Components/HomePage.tsx";
-import LoginButton from "@/Components/LoginButton.tsx";
-import LogoutButton from "@/Components/LogoutButton.tsx";
+import { WantedPage } from "@/Components/WantedPage.tsx";
 import { AuthenticationGuard } from "@/Components/AuthenticationGuard.tsx";
 import { Menu } from "@/Components/Menu.tsx";
-import Profile from "@/Components/Profile.tsx";
 import { SignupPage } from "@/Components/SignupPage.tsx";
-import { Link, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 export function App() {
   
@@ -23,7 +21,9 @@ export function App() {
       <Routes>
         <Route path={"/"} element={<HomePage />} />
         <Route path={"collection"} element={<AuthenticationGuard component={CollectionPage} />} />
-        <Route path={"collection/add"} element={<AuthenticationGuard component={AddCard} />} />
+        <Route path={"collection/add"} element={<AuthenticationGuard component={AddCardCollection} />} />
+        <Route path={"wanted"} element={<AuthenticationGuard component={WantedPage} />} />
+        <Route path={"wanted/add"} element={<AuthenticationGuard component={AddCardWanted} />} />
         <Route path={"signup"} element={<SignupPage />} />
       </Routes>
     </BrowserRouter>

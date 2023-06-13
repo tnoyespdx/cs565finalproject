@@ -9,9 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>,
   <Auth0Provider
     domain="dev-vkg33qrgjahvink0.us.auth0.com"
     clientId="2SqkJTH4FNdMGTkmtcj5f7o0DQFk4FsP"

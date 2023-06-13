@@ -1,10 +1,10 @@
-import { CollectionList } from "@/Components/CollectionList.tsx";
+import { WantedList } from "@/Components/WantedList.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const CollectionPage = () => {
+export const WantedPage = () => {
   const { user, isLoading } = useAuth0();
   const [exists, setExists] = useState(false);
   
@@ -31,11 +31,11 @@ export const CollectionPage = () => {
   
   return exists ?
     (
-    <div>
-      <h1 className={"mt-5"}>My Collection</h1>
-      <Link to={"/collection/add"}>Add a Card</Link>
-      <CollectionList />
-    </div>
+      <div>
+        <h1 className={"mt-5"}>My Want List</h1>
+        <Link to={"/wanted/add"}>Add a Card</Link>
+        <WantedList />
+      </div>
     )
     :
     null

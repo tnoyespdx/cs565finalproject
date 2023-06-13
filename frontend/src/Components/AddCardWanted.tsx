@@ -1,8 +1,5 @@
-import { AddCardService } from "@/Services/AddCardService.tsx";
-import { CardService } from "@/Services/CardService.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useAuth0 } from "@auth0/auth0-react";
-import * as http from "http";
 import { useEffect, useState } from "react";
 
 export enum SubmissionStatus {
@@ -11,7 +8,7 @@ export enum SubmissionStatus {
   SubmitSucceeded
 }
 
-export const AddCard = () => {
+export const AddCardWanted = () => {
   const { user } = useAuth0();
   const [userId, setUserId] = useState(0);
   const [submitted, setSubmitted] = useState(SubmissionStatus.NotSubmitted);
@@ -38,14 +35,14 @@ export const AddCard = () => {
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     
-    httpClient.post("/collection/add",  {"user_id": userId, "card_id": +formJson.card_id}) //typecast to number
+    httpClient.post("/wanted/add",  {"user_id": userId, "card_id": +formJson.card_id}) //typecast to number
       .then( (response) => {
         if (response.status === 200) {
           setSubmitted(SubmissionStatus.SubmitSucceeded);
         }
       }).catch(err => {
-        setSubmitted(SubmissionStatus.SubmitFailed);
-        console.log("unable to add the card: ", err.message);
+      setSubmitted(SubmissionStatus.SubmitFailed);
+      console.log("unable to add the card: ", err.message);
     });
   }
   
@@ -63,17 +60,17 @@ export const AddCard = () => {
   
   return (
     <form onSubmit={handleSubmit} className="mt-5">
-    <label>
-      <h1>Select a card to add to your collection:</h1>
-      <br />
-      <select name="card_id" defaultValue="Select a card">
-        {
-          cardList.map((card: {name:string, set:string, rarity:string, setNum:number, setTotal:number}, index) =>
-            <option key={index} value={index+1}>{card.name} - {card.set} Set - {card.rarity} {card.setNum}/{card.setTotal}</option>)
-          // The index starts at 0, but my cards card_id in the database start at 1
-        }
-      </select>
-    </label>
+      <label>
+        <h1>Select a card to add to your want list:</h1>
+        <br />
+        <select name="card_id" defaultValue="Select a card">
+          {
+            cardList.map((card: {name:string, set:string, rarity:string, setNum:number, setTotal:number}, index) =>
+              <option key={index} value={index+1}>{card.name} - {card.set} Set - {card.rarity} {card.setNum}/{card.setTotal}</option>)
+            // The index starts at 0, but my cards card_id in the database start at 1
+          }
+        </select>
+      </label>
       <br />
       <button type="submit" className="m-5 px-5">Add</button>
       {

@@ -4,13 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Card, CardGroup} from 'react-bootstrap';
 
-export const CollectionList = () => {
-  const [collection, setCollection] = useState([]);
+export const WantedList = () => {
+  const [wanted, setWanted] = useState([]);
   const [usersCards, setUsersCards] = useState([]);
   const [cardNames, setCardNames] = useState([]);
   const [userId, setUserId] = useState(0);
-  const [emptyCollection, setEmptyColletion] = useState(true);
-  
   const { user, isAuthenticated } = useAuth0();
   
   
@@ -24,30 +22,30 @@ export const CollectionList = () => {
         console.log("Error getting user id: ", err);
       }
     }
-      getUserId().then(setUserId);
+    getUserId().then(setUserId);
   }, [isAuthenticated]);
   
   useEffect( () => {
-    const getCollection = async () => {
+    const getWanted = async () => {
       try {
-        // Check which cards this user has in their collection
-        const collectionRes = await httpClient.search("/collection", { "user_id": userId });
+        // Check which cards this user has in their want list
+        const collectionRes = await httpClient.search("/wanted", { "user_id": userId });
         return collectionRes.data;
       } catch (err) {
-        console.log("Error getting collection: ", err);
+        console.log("Error getting wanted list: ", err);
       }
     }
-      getCollection().then(setCollection);
-    }, [userId]);
+    getWanted().then(setWanted);
+  }, [userId]);
   
   
   useEffect( () => {
-    // Build a new array that is just the card # of each card they own
-    const cardIds = collection.map((collected: { card: number }) => collected.card)
+    // Build a new array that is just the card # of each card they want
+    const cardIds = wanted.map((wanted: { card: number }) => wanted.card)
     setUsersCards(cardIds);
-  }, [collection]);
- 
-
+  }, [wanted]);
+  
+  
   
   useEffect( () => {
     // Use the card IDs to get the card names
@@ -70,7 +68,7 @@ export const CollectionList = () => {
   if (usersCards.length === 0) {
     return (
       <div>
-        <h3 className={"m-5"}>You don't have any cards yet!</h3>
+        <h3 className={"m-5"}>Don't you want anything?</h3>
         <img src={"../src/assets/images/surprised_pikachu.jpg"}/>
       </div>
     )
@@ -82,23 +80,23 @@ export const CollectionList = () => {
         cardNames ?
           <ul>
             <CardGroup className={"mt-5"}>
-            {
-              cardNames.map((card: {name:string, set:string, imgUri:string, rarity:string, setNum:number, setTotal:number}, index) =>
-                <li className={"list-unstyled"} key={index}>
-              
-                  <Card className={"m-1"} style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={"../src/assets/images/" + card.imgUri} />
-                <Card.Body>
-                  <Card.Title>{card.name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">{card.set} Set</Card.Subtitle>
-                  <Card.Text>
-                    {card.rarity} - {card.setNum}/{card.setTotal}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-                </li>)
-            }
-          </CardGroup>
+              {
+                cardNames.map((card: {name:string, set:string, imgUri:string, rarity:string, setNum:number, setTotal:number}, index) =>
+                  <li className={"list-unstyled"} key={index}>
+                    
+                    <Card className={"m-1"} style={{ width: '18rem' }}>
+                      <Card.Img variant="top" src={"../src/assets/images/" + card.imgUri} />
+                      <Card.Body>
+                        <Card.Title>{card.name}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{card.set} Set</Card.Subtitle>
+                        <Card.Text>
+                          {card.rarity} - {card.setNum}/{card.setTotal}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </li>)
+              }
+            </CardGroup>
           </ul>
           :
           null

@@ -1,14 +1,17 @@
-import { SubmissionStatus } from "@/Components/AddCard.tsx";
+import { SubmissionStatus } from "@/Components/AddCardCollection.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 
 
 export const SignupPage = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [exists, setExists] = useState(false);
   const [submitted, setSubmitted] = useState(SubmissionStatus.NotSubmitted);
 
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
   
   function handleSubmit(e) {
     e.preventDefault();
@@ -43,7 +46,7 @@ export const SignupPage = () => {
           <h1>To start your collection you'll need an account!</h1>
           <br />
           <label>Email Address:</label>
-          <input className={"m-5"} type="text" readOnly={false} placeholder="email@email.com" />
+          <input className={"m-5"} type="text" readOnly={true} placeholder={user.email} />
         </label>
         <br />
         <button type="submit" className="m-5 px-5">Create Account</button>
