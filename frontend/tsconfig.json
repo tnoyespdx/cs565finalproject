@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "allowJs": true,
     "paths": {
       "@/*": ["src/*"],
       "@css/*": ["src/assets/css/*"],
-      "@images/*": ["src/assets/images/*"],
+      "@images/*": ["src/assets/images/*"]
     },
-
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "allowJs": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -19,6 +18,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src/**/*.ts",
@@ -28,5 +32,5 @@
     "node_modules/.pnpm/cypress@12.11.0/node_modules/cypress/types/cypress-global-vars.d.ts"
   ],
   "outDir": "./build",
-  "references": [{ "path": "./tsconfig.vite.json"}]
+  "references": [{"path": "./tsconfig.vite.json"}]
 }

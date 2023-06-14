@@ -69,7 +69,7 @@ export const WantedList = () => {
     return (
       <div>
         <h3 className={"m-5"}>Don't you want anything?</h3>
-        <img src={"../src/assets/images/surprised_pikachu.jpg"}/>
+        <img src={"./images/surprised_pikachu.jpg"}/>
       </div>
     )
   }
@@ -85,7 +85,7 @@ export const WantedList = () => {
                   <li className={"list-unstyled"} key={index}>
                     
                     <Card className={"m-1"} style={{ width: '18rem' }}>
-                      <Card.Img variant="top" src={"../src/assets/images/" + card.imgUri} />
+                      <Card.Img variant="top" src={"./images/" + card.imgUri} />
                       <Card.Body>
                         <Card.Title>{card.name}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{card.set} Set</Card.Subtitle>

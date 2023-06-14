@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-//import { Search } from "react-router-dom";
 
 const serverIP = import.meta.env.API_HOST;
 const serverPort = import.meta.env.PORT;
