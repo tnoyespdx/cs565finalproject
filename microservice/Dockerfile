@@ -2,7 +2,8 @@ FROM rust:buster as builder
 
 WORKDIR /app
 RUN USER=root cargo new --bin microservice
-COPY Cargo.toml Cargo.lock ./microservice/
+WORKDIR /app/microservice
+COPY Cargo.toml Cargo.lock ./src/
 
 WORKDIR /app/microservice
 RUN cargo build

@@ -16,7 +16,7 @@ struct Wanted {
 
 
 fn main() -> Result<(), Error> {
-    let mut client = Client::connect("postgresql://finalproject:finalproject@localhost/finalproject", NoTls)?;
+    let mut client = Client::connect("postgres://finalproject:finalproject@postgres/finalproject", NoTls)?;
 
 
     while client.is_valid(Duration::from_secs(30)).unwrap() == () {
