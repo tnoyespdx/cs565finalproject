@@ -1,7 +1,7 @@
 import { SubmissionStatus } from "@/Components/AddCardCollection.tsx";
 import { httpClient } from "@/Services/HttpClient.tsx";
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 
 export const SignupPage = () => {
@@ -36,7 +36,7 @@ export const SignupPage = () => {
     <div>
       <h1 className={"mt-5"}>Pokemon Card Collector!</h1>
       <h2 className={"text-info-emphasis mt-5"}>Let's get started...</h2>
-      <img src={"../src/assets/images/signup_image.jpg"} className={"mt-5"}/>
+      <img src={"./images/signup_image.jpg"} className={"mt-5"} alt={"lets goooo"}/>
     </div>
     )
     :

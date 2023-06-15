@@ -51,6 +51,13 @@ services:
       postgres:
         condition: service_healthy
 
+  microservice:
+      container_name: microservice
+      build: ./microservice/
+
+      depends_on:
+        postgres:
+          condition: service_healthy
 
 volumes:
   db:

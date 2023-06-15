@@ -9,7 +9,6 @@ export const CollectionList = () => {
   const [usersCards, setUsersCards] = useState([]);
   const [cardNames, setCardNames] = useState([]);
   const [userId, setUserId] = useState(0);
-  const [emptyCollection, setEmptyColletion] = useState(true);
   
   const { user, isAuthenticated } = useAuth0();
   

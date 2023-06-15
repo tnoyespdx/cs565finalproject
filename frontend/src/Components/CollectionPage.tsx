@@ -33,7 +33,6 @@ export const CollectionPage = () => {
     (
     <div>
       <h1 className={"mt-5"}>My Collection</h1>
-      {/*<Link style={{color: 'red'}} to={"/collection/add"}>Add a Card</Link>*/}
       <Link  to={"/collection/add"}><button className="button-85 mt-5" role="button">Add a Card</button></Link>
       <CollectionList />
     </div>

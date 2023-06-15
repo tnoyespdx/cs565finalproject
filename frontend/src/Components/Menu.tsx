@@ -1,7 +1,5 @@
 import LoginButton from "@/Components/LoginButton.tsx";
-import LogoutButton from "@/Components/LogoutButton.tsx";
 import Profile from "@/Components/Profile.tsx";
-import { Link } from "react-router-dom";
 import { Container, Nav, Navbar} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap'
 

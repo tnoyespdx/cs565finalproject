@@ -33,7 +33,6 @@ export const WantedPage = () => {
     (
       <div>
         <h1 className={"mt-5"}>My Want List</h1>
-        {/*<Link to={"/wanted/add"}>Add a Card</Link>*/}
         <Link  to={"/wanted/add"}><button className="button-85 mt-5" role="button">Add a Card</button></Link>
         <WantedList />
       </div>
